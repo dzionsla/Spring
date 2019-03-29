@@ -33,12 +33,21 @@ public class DatabaseConnector {
 		instance = null;
 	}
 	
+	
 	public Iterable<School> getSchools() {
 		String hql = "FROM School";
 		Query query = session.createQuery(hql);
 		List schools = query.list();
 		
 		return schools;
+	}
+	
+	public School getSchool(String schoolId) {
+		String hql = "FROM School S WHERE S.id=" + schoolId;
+		Query query = session.createQuery(hql);
+		List schools = query.list();
+		
+		return (School) schools.get(0);
 	}
 	
 	public void addSchool(School school) {
@@ -58,13 +67,21 @@ public class DatabaseConnector {
 		transaction.commit();
 	}
 
-	
+
 	public Iterable<SchoolClass> getSchoolClasses() {
 		String hql = "FROM SchoolClass";
 		Query query = session.createQuery(hql);
 		List schoolClasses = query.list();
 		
 		return schoolClasses;
+	}
+	
+	public SchoolClass getSchoolClass(String schoolClassId) {
+		String hql = "FROM SchoolClass S WHERE S.id=" + schoolClassId;
+		Query query = session.createQuery(hql);
+		List schoolClasses = query.list();
+		
+		return (SchoolClass) schoolClasses.get(0);
 	}
 	
 	public void addSchoolClass(SchoolClass schoolClass, String schoolId) {
@@ -93,21 +110,6 @@ public class DatabaseConnector {
 		transaction.commit();
 	}
 
-//	public void updateSchoolClass(SchoolClass schoolClass, String schoolId) {
-//		String hql = "FROM School S WHERE S.id=" + schoolId;
-//		Query query = session.createQuery(hql);
-//		List<School> results = query.list();
-//		Transaction transaction = session.beginTransaction();
-//		if (results.size() == 0) {
-//			session.save(schoolClass);
-//		} else {
-//			School school = results.get(0);
-//			school.addClass(schoolClass);
-//			session.save(schoolClass);
-//		}
-//		transaction.commit();
-//	}
-	
 
 	public Iterable<Student> getStudents() {
 		String hql = "FROM Student";
@@ -115,6 +117,14 @@ public class DatabaseConnector {
 		List students = query.list();
 		
 		return students;
+	}
+	
+	public Student getStudent(String studentId) {
+		String hql = "FROM Student S WHERE S.id=" + studentId;
+		Query query = session.createQuery(hql);
+		List students = query.list();
+		
+		return (Student) students.get(0);
 	}
 	
 	public void addStudent(Student student, String schoolClassId) {
@@ -143,4 +153,6 @@ public class DatabaseConnector {
 		transaction.commit();
 	}
 
+	
+	
 }

@@ -8,10 +8,14 @@
     	<br/><br/>
 	   			<form action="UpdateSchool" method="POST">
 					<table>
-						<tr><td>nazwa:</td><td><input type="text" name="schoolName" value="${schoolId}" /></td></tr>
-						<tr><td>adres:</td><td><input type="text" name="schoolAddress" /></td></tr>
+						<tr>
+							<td>nazwa:</td><td><input type="text" name="schoolName" th:value="${school.name}" th:text="${schoolName}"/></td>
+						</tr>
+						<tr>
+							<td>adres:</td><td><input type="text" name="schoolAddress" th:value="${school.address}" th:text="${schoolAddress}"/></td>
+						</tr>
 					</table><br/><BR/>
-					<input type="submit" value="Utwórz"/>
+					<input type="submit" value="Zmodyfikuj"/>
 				</form>
     </div>
 
